@@ -1,0 +1,71 @@
+.request-card {
+  display: flex;
+  gap: 12px;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  background: #fff;
+  margin-bottom: 12px;
+}
+
+.request-photo {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.request-body {
+  flex: 1;
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+.request-description {
+  font-size: 14px;
+  color: #444;
+  margin: 6px 0;
+}
+
+.request-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.badge-pendiente   { background: #f0ad4e; }
+.badge-en-proceso  { background: #5bc0de; }
+.badge-terminado   { background: #5cb85c; }
+.badge-cancelado   { background: #d9534f; }
+
+.request-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-status {
+  border: none;
+  background: #337ab7;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}

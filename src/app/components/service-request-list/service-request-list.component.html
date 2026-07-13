@@ -1,0 +1,56 @@
+<div class="new-request-form">
+  <h2>Nueva solicitud</h2>
+
+  <select [(ngModel)]="newType">
+    <option *ngFor="let t of typeOptions" [value]="t">{{ typeLabels[t] }}</option>
+  </select>
+
+  <textarea
+    [(ngModel)]="newDescription"
+    placeholder="Describe el problema (ej. fuga en el lavabo del baño)">
+  </textarea>
+
+  <div class="photo-row">
+    <button (click)="onCapturePhoto()">📷 Adjuntar foto de evidencia</button>
+    <img *ngIf="newPhotoUrl" [src]="newPhotoUrl" class="photo-preview" alt="preview">
+    <p class="error" *ngIf="cameraError">{{ cameraError }}</p>
+  </div>
+
+  <button class="btn-primary" (click)="onCreateRequest()">Crear solicitud</button>
+</div>
+
+<div class="filters">
+  <label>
+    Estado:
+    <select [(ngModel)]="selectedStatus" (change)="onFilterChange()">
+      <option value="TODOS">Todos</option>
+      <option *ngFor="let s of statusOptions" [value]="s">{{ statusLabels[s] }}</option>
+    </select>
+  </label>
+
+  <label>
+    Tipo:
+    <select [(ngModel)]="selectedType" (change)="onFilterChange()">
+      <option value="TODOS">Todos</option>
+      <option *ngFor="let t of typeOptions" [value]="t">{{ typeLabels[t] }}</option>
+    </select>
+  </label>
+
+  <button (click)="onSortChange('createdAt')">
+    Ordenar por fecha {{ sortField === 'createdAt' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+  </button>
+  <button (click)="onSortChange('status')">
+    Ordenar por estado {{ sortField === 'status' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+  </button>
+</div>
+
+<div class="request-list">
+  <app-service-request-card
+    *ngFor="let r of requests"
+    [request]="r">
+  </app-service-request-card>
+
+  <p *ngIf="requests.length === 0" class="empty-state">
+    No hay solicitudes con estos filtros.
+  </p>
+</div>

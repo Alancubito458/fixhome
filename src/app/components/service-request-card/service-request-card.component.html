@@ -1,0 +1,35 @@
+<div class="request-card" *ngIf="request">
+
+  <img
+    *ngIf="request.photoUrl"
+    [src]="request.photoUrl"
+    alt="Foto de evidencia"
+    class="request-photo">
+
+  <div class="request-body">
+    <div class="request-header">
+      <h3>{{ typeLabel }}</h3>
+      <span [ngClass]="statusCssClass">{{ statusLabel }}</span>
+    </div>
+
+    <p class="request-description">{{ request.description }}</p>
+
+    <p class="request-date">
+      Creado: {{ request.createdAt | date:'dd/MM/yyyy HH:mm' }}
+    </p>
+
+    <div class="request-rating" *ngIf="request.rating">
+      Calificación: {{ request.rating }} / 5
+    </div>
+
+    <div class="request-actions" *ngIf="nextStatuses.length > 0">
+      <button
+        *ngFor="let next of nextStatuses"
+        (click)="onAdvanceStatus(next)"
+        class="btn-status">
+        Marcar como {{ statusLabels[next] }}
+      </button>
+    </div>
+  </div>
+
+</div>
